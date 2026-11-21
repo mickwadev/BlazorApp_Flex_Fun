@@ -8,7 +8,7 @@
 @foreach (var v in Enum.GetValues<T>())
 {
     <label style="color:antiquewhite">
-            <InputRadio Value="v" /> ✨@(KonwerterEnuma(v))
+                <InputRadio Value="v" /> ✨@(FlexHelpers.EnumToCss(v.ToString()))
     </label>
 }
 </InputRadioGroup>
@@ -19,8 +19,7 @@
     [Parameter]
     public string NazwaParametru { get; set; }
 
-    [Parameter]
-    public Func<T, string> KonwerterEnuma { get; set; }
+    
 
     [Parameter]
     public Action<T> ZmianaWartosci { get; set; }

@@ -3,11 +3,14 @@
 
 <FlexPropertyComponent
     NazwaParametru="flex-direction"
-    T="Direction" 
-    KonwerterEnuma="FlexHelpers.Enum2String"
+    T="FlexDirection" 
     Wlasciwosc="selectedDirection"
-    ZmianaWartosci="UpdateDirection" />
+    ZmianaWartosci="UpdateFlexDirection" />
 
+<FlexPropertyComponent NazwaParametru="justify-content"
+                       T="JustifyContent"
+                       Wlasciwosc="justifyContent"
+                       ZmianaWartosci="UpdateJustifyContent" />
 
  <button @onclick="ResetowankoWartosci">Resetuj wartości </button>
 
@@ -19,21 +22,29 @@
 </div>
 
 @code {
-    Direction selectedDirection = Direction.Row;
+    FlexDirection selectedDirection = FlexDirection.Row;
+    JustifyContent justifyContent = JustifyContent.FlexStart;
 
     string GenerateStyle()
     {
-        return FlexHelpers.GetStyle(selectedDirection);
+        return FlexHelpers.GetStyle(selectedDirection, justifyContent);
     }
 
-    private void UpdateDirection(Direction dir)
+    private void UpdateFlexDirection(FlexDirection dir)
     {
         selectedDirection = dir;
         StateHasChanged();
     }
 
+    private void UpdateJustifyContent(JustifyContent jc)
+    {
+        justifyContent = jc;
+        StateHasChanged();
+    }
+
     void ResetowankoWartosci()
     {
-        selectedDirection = Direction.Row;
+        selectedDirection = FlexDirection.Row;
+        justifyContent = JustifyContent.FlexStart;
     }
 }
