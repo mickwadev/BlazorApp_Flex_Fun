@@ -1,0 +1,32 @@
+﻿@rendermode InteractiveServer
+@typeparam T where T:struct, Enum
+
+<div style="display:flex; flex-direction:column; border: solid 2px #999; border-radius:8px;">
+    <p class="nazwa-parametru">@NazwaParametru</p>
+<InputRadioGroup @bind-Value="Wlasciwosc" @bind-Value:after="ZmienionaWartosc">
+
+@foreach (var v in Enum.GetValues<T>())
+{
+    <label style="color:antiquewhite">
+            <InputRadio Value="v" /> ✨@(KonwerterEnuma(v))
+    </label>
+}
+</InputRadioGroup>
+</div>
+
+@code
+    {
+    [Parameter]
+    public string NazwaParametru { get; set; }
+
+    [Parameter]
+    public Func<T, string> KonwerterEnuma { get; set; }
+
+    [Parameter]
+    public Action<T> ZmianaWartosci { get; set; }
+
+    [Parameter]
+    public T Wlasciwosc { get; set; }
+
+    private void ZmienionaWartosc() => ZmianaWartosci.Invoke(Wlasciwosc);
+}
