@@ -5,22 +5,24 @@
     NazwaParametru="flex-direction"
     T="FlexDirection" 
     Wlasciwosc="selectedDirection"
-    ZmianaWartosci="UpdateFlexDirection" />
+    WlasciwoscChanged="UpdateFlexDirection" />
 
 <FlexPropertyComponent NazwaParametru="justify-content"
                        T="JustifyContent"
                        Wlasciwosc="justifyContent"
-                       ZmianaWartosci="UpdateJustifyContent" />
+                       @* WłasciwoscChanged to nazwa na podstawie Wlasciwosc 
+                           Własny callback do zmiany jest zbędny i to ma być EventCallback
+                       *@
+                       WlasciwoscChanged="UpdateJustifyContent" />
 
  <button @onclick="ResetowankoWartosci">Resetuj wartości </button>
 
 <div class="rameczka" style="@GenerateStyle()">
-<Ramka Znaczek="🍐" />
-<Ramka Znaczek="🍓" />
-<Ramka Znaczek="🥥" />
+    <Ramka Znaczek="🍐" />
+    <Ramka Znaczek="🍓" />
+    <Ramka Znaczek="🥥" />
     <Ramka Znaczek="🍌" />
 </div>
-
 @code {
     FlexDirection selectedDirection = FlexDirection.Row;
     JustifyContent justifyContent = JustifyContent.FlexStart;
@@ -33,13 +35,11 @@
     private void UpdateFlexDirection(FlexDirection dir)
     {
         selectedDirection = dir;
-        StateHasChanged();
     }
 
     private void UpdateJustifyContent(JustifyContent jc)
     {
         justifyContent = jc;
-        StateHasChanged();
     }
 
     void ResetowankoWartosci()

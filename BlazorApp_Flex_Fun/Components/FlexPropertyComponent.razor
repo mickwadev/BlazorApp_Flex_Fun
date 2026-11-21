@@ -3,7 +3,8 @@
 
 <div style="display:flex; flex-direction:column; border: solid 2px #999; border-radius:8px;">
     <p class="nazwa-parametru">@NazwaParametru</p>
-<InputRadioGroup @bind-Value="Wlasciwosc" @bind-Value:after="ZmienionaWartosc">
+    @*Name musi być unique bo inaczej będzie traktował wszystkie InputRadio jak jedną grupę *@ 
+<InputRadioGroup Name="@NazwaParametru"  @bind-Value="Wlasciwosc" @bind-Value:after="ZmienionaWartosc">
 
 @foreach (var v in Enum.GetValues<T>())
 {
@@ -19,13 +20,11 @@
     [Parameter]
     public string NazwaParametru { get; set; }
 
-    
-
-    [Parameter]
-    public Action<T> ZmianaWartosci { get; set; }
-
     [Parameter]
     public T Wlasciwosc { get; set; }
 
-    private void ZmienionaWartosc() => ZmianaWartosci.Invoke(Wlasciwosc);
+    [Parameter]
+    public EventCallback<T> WlasciwoscChanged { get; set; }
+
+    private Task ZmienionaWartosc() => WlasciwoscChanged.InvokeAsync(Wlasciwosc);
 }
