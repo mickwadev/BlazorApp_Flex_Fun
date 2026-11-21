@@ -1,0 +1,28 @@
+﻿@rendermode InteractiveServer
+   
+    <InputRadioGroup @bind-Value="selectedDirection" >
+
+        @foreach (var flexDirection in Enum.GetValues<Direction>())
+        {
+        <label class="bialy-tekst">
+                <InputRadio Value="flexDirection"/> @FlexHelpers.Enum2String(flexDirection)
+            </label>
+        }
+    </InputRadioGroup>
+
+<div class="rameczka" style="@GenerateStyle()">
+<Ramka Znaczek="🍐" />
+<Ramka Znaczek="🍓" />
+<Ramka Znaczek="🥥" />
+    <Ramka Znaczek="🍌" />
+</div>
+@code {
+    Direction selectedDirection = Direction.Row;
+
+    string GenerateStyle()
+    {
+        return FlexHelpers.GetStyle(selectedDirection);
+    }
+
+    
+}

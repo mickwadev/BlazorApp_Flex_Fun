@@ -1,0 +1,19 @@
+/* CSS for Wszystko component */
+.rameczka
+{
+    border:2px solid #12d5e9;
+}
+
+.bialy-tekst{
+    color : aliceblue;
+}
+
+
+.flexiki{
+    display:flex;
+}
+/*element musi mieć obie klasy jednocześnie*/
+.flexiki.is-column{
+    flex-direction:column;
+}
+
