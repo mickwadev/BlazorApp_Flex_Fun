@@ -12,11 +12,20 @@
 <div class="rameczka" style="@GenerateStyle()">
     @foreach(OpcjeRamki or in opcjeRamki)
     {
-        <Ramka opcje="or"/>
+        <Ramka opcje="or" Wybrana="WybranaRamka"/>
     }
-    
-</div>
+ </div>
+
+ @if(wybranaRamka is not null)
+{
+    <p> @wybranaRamka.Owocek</p>
+    <button @onclick="()=>{wybranaRamka.Height +=10;}" >➕</button>
+    <button @onclick="() => { wybranaRamka.Height -= 10; }">➖</button>
+}
 @code {
+
+    OpcjeRamki? wybranaRamka;
+
     List<OpcjeRamki> opcjeRamki = new()
     {
         new OpcjeRamki(){Owocek = "🍓" },
@@ -36,11 +45,16 @@
         return FlexHelpers
         .GetStyle(selectedDirection, justifyContent, alignContent, alignItems);
     }
-     
+
     void ResetowankoWartosci()
     {
         selectedDirection = FlexDirection.Row;
         justifyContent = JustifyContent.FlexStart;
         alignContent = AlignContent.FlexStart;
+    }
+
+    private void WybranaRamka(OpcjeRamki wybrana)
+    {
+        wybranaRamka = wybrana;
     }
 }

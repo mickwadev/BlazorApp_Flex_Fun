@@ -2,6 +2,7 @@
 @onclick="()=>
 {
     clicked = !clicked;
+    Wybrana.InvokeAsync(opcje);
 }">
     <p>@opcje.Owocek</p>
 </div>
@@ -9,7 +10,9 @@
 @code {
     [Parameter, EditorRequired]
     public OpcjeRamki opcje { get; set; }
- 
+
+    [Parameter]
+    public EventCallback<OpcjeRamki> Wybrana { get; set; }
     bool clicked = false;
     string dodatkowyStyl => clicked ? "border:dotted yellow 2px;":"";
 }
