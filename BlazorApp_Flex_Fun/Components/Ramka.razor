@@ -1,4 +1,8 @@
-﻿<div class="moja-ramka" style="width:@(Rozmiar)px; height:@(Rozmiar)px;" >
+﻿<div class="moja-ramka" style="@dodatkowyStyl width:@(Rozmiar)px; height:@(Rozmiar)px;" 
+@onclick="()=>
+{
+    clicked = !clicked;
+}">
     <p>@Znaczek</p>
 </div>
 
@@ -8,4 +12,7 @@
 
     [Parameter]
     public int Rozmiar { get; set; }
+
+    bool clicked = false;
+    string dodatkowyStyl => clicked ? "border:dotted yellow 2px;":"";
 }
