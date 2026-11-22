@@ -1,18 +1,15 @@
-﻿<div class="moja-ramka" style="@dodatkowyStyl width:@(Rozmiar)px; height:@(Rozmiar)px;" 
+﻿<div class="moja-ramka" style="@dodatkowyStyl width:@(opcje.Width)px; height:@(opcje.Height)px;" 
 @onclick="()=>
 {
     clicked = !clicked;
 }">
-    <p>@Znaczek</p>
+    <p>@opcje.Owocek</p>
 </div>
 
 @code {
-    [Parameter]
-    public string Znaczek { get; set; }
-
-    [Parameter]
-    public int Rozmiar { get; set; }
-
+    [Parameter, EditorRequired]
+    public OpcjeRamki opcje { get; set; }
+ 
     bool clicked = false;
     string dodatkowyStyl => clicked ? "border:dotted yellow 2px;":"";
 }

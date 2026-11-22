@@ -10,11 +10,22 @@
  <button @onclick="ResetowankoWartosci">Resetuj wartości </button>
 
 <div class="rameczka" style="@GenerateStyle()">
-    <Ramka Znaczek="🍓" Rozmiar="100"  />
-    <Ramka Znaczek="🥥" Rozmiar="200" />
-    <Ramka Znaczek="🍌" Rozmiar="50" />
+    @foreach(OpcjeRamki or in opcjeRamki)
+    {
+        <Ramka opcje="or"/>
+    }
+    
 </div>
 @code {
+    List<OpcjeRamki> opcjeRamki = new()
+    {
+        new OpcjeRamki(){Owocek = "🍓" },
+        new OpcjeRamki(){Owocek = "🥥" },
+        new OpcjeRamki(){Owocek = "🍒" },
+        new OpcjeRamki(){Owocek = "🍋" },
+        new OpcjeRamki(){Owocek = "🍌" }
+    };
+
     FlexDirection selectedDirection = FlexDirection.Row;
     JustifyContent justifyContent = JustifyContent.FlexStart;
     AlignContent alignContent = AlignContent.FlexStart;
