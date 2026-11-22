@@ -10,20 +10,19 @@
 @foreach (var v in Enum.GetValues<T>())
 {
     <label style="color:antiquewhite">
-                <InputRadio Value="v" /> ✨@(FlexHelpers.EnumToCss(v.ToString()))
+        <InputRadio Value="v" /> ✨@(FH.EnumToCss(v.ToString()))
     </label>
 }
 </InputRadioGroup>
 </div>
 
 @code
-    {
-
+{
     private string ParamTypeName => FH.EnumToCss(typeof(T).Name);
 
     [Parameter]
     public T Wlasciwosc { get; set; }
-
+    // Ten callback musi się nazywać zgodnie ze schematem nazwy
     [Parameter]
     public EventCallback<T> WlasciwoscChanged { get; set; }
 
