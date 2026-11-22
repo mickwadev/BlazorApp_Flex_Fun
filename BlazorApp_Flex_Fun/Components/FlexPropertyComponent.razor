@@ -1,10 +1,11 @@
 ﻿@rendermode InteractiveServer
 @typeparam T where T:struct, Enum
+@using FH = FlexHelpers
 
 <div style="display:flex; flex-direction:column; border: solid 2px #999; border-radius:8px;">
-    <p class="nazwa-parametru">@NazwaParametru</p>
+    <p class="nazwa-parametru">@ParamTypeName</p>
     @*Name musi być unique bo inaczej będzie traktował wszystkie InputRadio jak jedną grupę *@ 
-<InputRadioGroup Name="@NazwaParametru"  @bind-Value="Wlasciwosc" @bind-Value:after="ZmienionaWartosc">
+    <InputRadioGroup Name="@ParamTypeName" @bind-Value="Wlasciwosc" @bind-Value:after="ZmienionaWartosc">
 
 @foreach (var v in Enum.GetValues<T>())
 {
@@ -17,8 +18,8 @@
 
 @code
     {
-    [Parameter]
-    public string NazwaParametru { get; set; }
+
+    private string ParamTypeName => FH.EnumToCss(typeof(T).Name);
 
     [Parameter]
     public T Wlasciwosc { get; set; }

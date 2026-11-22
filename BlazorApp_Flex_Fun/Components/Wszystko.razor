@@ -2,10 +2,10 @@
  
 
 <div style="display:flex">
-    <FlexPropertyComponent NazwaParametru="flex-direction" @bind-Wlasciwosc="selectedDirection"/>
-    <FlexPropertyComponent NazwaParametru="justify-content" @bind-Wlasciwosc="justifyContent" />
-    <FlexPropertyComponent NazwaParametru="align-content" @bind-Wlasciwosc="alignContent" />
-    <FlexPropertyComponent NazwaParametru="align-items" @bind-Wlasciwosc="alignItems" />
+    <FlexPropertyComponent @bind-Wlasciwosc="selectedDirection"/>
+    <FlexPropertyComponent @bind-Wlasciwosc="justifyContent" />
+    <FlexPropertyComponent @bind-Wlasciwosc="alignContent" />
+    <FlexPropertyComponent @bind-Wlasciwosc="alignItems" />
 </div>
  <button @onclick="ResetowankoWartosci">Resetuj wartości </button>
 
