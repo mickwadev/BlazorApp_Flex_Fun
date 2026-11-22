@@ -5,6 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <BlazorDisableThrowNavigationException>true</BlazorDisableThrowNavigationException>
+	<WarningsAsErrors>RZ2012</WarningsAsErrors>
   </PropertyGroup>
 
 </Project>
