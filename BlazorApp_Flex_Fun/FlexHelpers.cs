@@ -4,12 +4,17 @@ namespace BlazorApp_Flex_Fun;
 
 public static class FlexHelpers
 {
-    public static string GetStyle(FlexDirection direction, JustifyContent justifyContent)
+    public static string GetStyle(FlexDirection direction, 
+        JustifyContent justifyContent,
+        AlignContent alignContent,
+        AlignItems alignItems)
     {
         StringBuilder sb = new StringBuilder();
         sb.Append("Display: Flex;");
         sb.Append($"flex-direction: {EnumToCss(direction.ToString())};");
         sb.Append($"justify-content: {EnumToCss(justifyContent.ToString())};");
+        sb.Append($"align-content: {EnumToCss(alignContent.ToString())};");
+        sb.Append($"align-items: {EnumToCss(alignItems.ToString())};");
         return sb.ToString();
     }
   

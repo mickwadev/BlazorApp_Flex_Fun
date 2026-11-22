@@ -1,8 +1,11 @@
-﻿<div class="moja-ramka">
+﻿<div class="moja-ramka" style="width:@(Rozmiar)px; height:@(Rozmiar)px;" >
     <p>@Znaczek</p>
 </div>
 
 @code {
     [Parameter]
     public string Znaczek { get; set; }
+
+    [Parameter]
+    public int Rozmiar { get; set; }
 }

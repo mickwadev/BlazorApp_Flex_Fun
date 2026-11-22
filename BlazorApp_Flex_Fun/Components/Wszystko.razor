@@ -5,7 +5,7 @@
     NazwaParametru="flex-direction"
     T="FlexDirection" 
     Wlasciwosc="selectedDirection"
-    WlasciwoscChanged="UpdateFlexDirection" />
+                       WWWlasciwoscChanged="UpdateFlexDirection" />
 
 <FlexPropertyComponent NazwaParametru="justify-content"
                        T="JustifyContent"
@@ -13,23 +13,35 @@
                        @* WłasciwoscChanged to nazwa na podstawie Wlasciwosc 
                            Własny callback do zmiany jest zbędny i to ma być EventCallback
                        *@
-                       WlasciwoscChanged="UpdateJustifyContent" />
+                       WWWlasciwoscChanged="UpdateJustifyContent" />
+
+<FlexPropertyComponent NazwaParametru="align-content"
+                       T="AlignContent"
+                       Wlasciwosc="alignContent"
+                       WWWlasciwoscChanged="UpdateAlignContent" />
+
+<FlexPropertyComponent NazwaParametru="align-items"
+                       T="AlignItems"
+                       Wlasciwosc="alignItems"
+                       WWWlasciwoscChanged="UpdateAlignItems" />
 
  <button @onclick="ResetowankoWartosci">Resetuj wartości </button>
 
 <div class="rameczka" style="@GenerateStyle()">
-    <Ramka Znaczek="🍐" />
-    <Ramka Znaczek="🍓" />
-    <Ramka Znaczek="🥥" />
-    <Ramka Znaczek="🍌" />
+    <Ramka Znaczek="🍓" Rozmiar="100"  />
+    <Ramka Znaczek="🥥" Rozmiar="200" />
+    <Ramka Znaczek="🍌" Rozmiar="50" />
 </div>
 @code {
     FlexDirection selectedDirection = FlexDirection.Row;
     JustifyContent justifyContent = JustifyContent.FlexStart;
+    AlignContent alignContent = AlignContent.FlexStart;
+    AlignItems alignItems = AlignItems.FlexStart;
 
     string GenerateStyle()
     {
-        return FlexHelpers.GetStyle(selectedDirection, justifyContent);
+        return FlexHelpers
+        .GetStyle(selectedDirection, justifyContent, alignContent, alignItems);
     }
 
     private void UpdateFlexDirection(FlexDirection dir)
@@ -41,10 +53,20 @@
     {
         justifyContent = jc;
     }
+    private void UpdateAlignContent(AlignContent ac)
+    {
+        alignContent = ac;
+    }
+
+    private void UpdateAlignItems(AlignItems ai)
+    {
+        alignItems = ai;
+    }
 
     void ResetowankoWartosci()
     {
         selectedDirection = FlexDirection.Row;
         justifyContent = JustifyContent.FlexStart;
+        alignContent = AlignContent.FlexStart;
     }
 }

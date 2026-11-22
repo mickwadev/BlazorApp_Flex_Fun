@@ -24,7 +24,7 @@
     public T Wlasciwosc { get; set; }
 
     [Parameter]
-    public EventCallback<T> WlasciwoscChanged { get; set; }
+    public EventCallback<T> WWWlasciwoscChanged { get; set; }
 
-    private Task ZmienionaWartosc() => WlasciwoscChanged.InvokeAsync(Wlasciwosc);
+    private Task ZmienionaWartosc() => WWWlasciwoscChanged.InvokeAsync(Wlasciwosc);
 }
