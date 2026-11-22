@@ -1,32 +1,12 @@
 ﻿@rendermode InteractiveServer
-   
+ 
 
-                       <div style="display:flex">
-<FlexPropertyComponent
-    NazwaParametru="flex-direction"
-    T="FlexDirection" 
-    Wlasciwosc="selectedDirection"
-                       WWWlasciwoscChanged="UpdateFlexDirection" />
-
-<FlexPropertyComponent NazwaParametru="justify-content"
-                       T="JustifyContent"
-                       Wlasciwosc="justifyContent"
-                       @* WłasciwoscChanged to nazwa na podstawie Wlasciwosc 
-                           Własny callback do zmiany jest zbędny i to ma być EventCallback
-                       *@
-                       WWWlasciwoscChanged="UpdateJustifyContent" />
-
-<FlexPropertyComponent NazwaParametru="align-content"
-                       T="AlignContent"
-                       Wlasciwosc="alignContent"
-                       WWWlasciwoscChanged="UpdateAlignContent" />
-
-<FlexPropertyComponent NazwaParametru="align-items"
-                       T="AlignItems"
-                       Wlasciwosc="alignItems"
-                       WWWlasciwoscChanged="UpdateAlignItems" />
-
-                       </div>
+<div style="display:flex">
+    <FlexPropertyComponent NazwaParametru="flex-direction" @bind-Wlasciwosc="selectedDirection"/>
+    <FlexPropertyComponent NazwaParametru="justify-content" @bind-Wlasciwosc="justifyContent" />
+    <FlexPropertyComponent NazwaParametru="align-content" @bind-Wlasciwosc="alignContent" />
+    <FlexPropertyComponent NazwaParametru="align-items" @bind-Wlasciwosc="alignItems" />
+</div>
  <button @onclick="ResetowankoWartosci">Resetuj wartości </button>
 
 <div class="rameczka" style="@GenerateStyle()">
