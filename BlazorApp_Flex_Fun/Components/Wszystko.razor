@@ -13,12 +13,16 @@
     @foreach(OpcjeRamki or in opcjeRamki)
     {
         <Ramka opcje="or" Wybrana="WybranaRamka"
-            RamkaOnPointerEnter="RamknaOnPointerEnter"/>
+            RamkaOnPointerEnter="RamknaOnPointerEnter"
+            RamkaOnPointerLeave="RamknaOnPointerLeave"/>
     }
  </div>
 
 <RamkoZmieniacz @bind-Opcje="aktualnieWybranaRamka" />
-<p>@RamkaAktualnyOver</p>
+@if (RamkaAktualnyOver is not null)
+{
+    <p>@RamkaAktualnyOver</p>
+}
 @code {
 
     OpcjeRamki? aktualnieWybranaRamka;
@@ -59,5 +63,10 @@
     private void RamknaOnPointerEnter(string id)
     {
         RamkaAktualnyOver = id;
+    }
+
+    private void RamknaOnPointerLeave()
+    {
+        RamkaAktualnyOver = null;
     }
 }
