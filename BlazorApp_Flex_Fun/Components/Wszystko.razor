@@ -2,7 +2,8 @@
  
 
 <div style="display:flex">
-    <FlexPropertyComponent @bind-Wlasciwosc="selectedDirection"/>
+    <FlexPropertyComponent @bind-Wlasciwosc="flexDirection"/>
+    <FlexPropertyComponent @bind-Wlasciwosc="flexWrap"/>
     <FlexPropertyComponent @bind-Wlasciwosc="justifyContent" />
     <FlexPropertyComponent @bind-Wlasciwosc="alignContent" />
     <FlexPropertyComponent @bind-Wlasciwosc="alignItems" />
@@ -37,7 +38,8 @@
         new OpcjeRamki(){Owocek = "🍌",Id=4 }
     };
 
-    FlexDirection selectedDirection = FlexDirection.Row;
+    FlexDirection flexDirection = FlexDirection.Row;
+    FlexWrap flexWrap = FlexWrap.Wrap;
     JustifyContent justifyContent = JustifyContent.FlexStart;
     AlignContent alignContent = AlignContent.FlexStart;
     AlignItems alignItems = AlignItems.FlexStart;
@@ -45,12 +47,13 @@
     string GenerateStyle()
     {
         return FlexHelpers
-        .GetStyle(selectedDirection, justifyContent, alignContent, alignItems);
+        .GetStyle(flexDirection, justifyContent, alignContent, alignItems,flexWrap);
     }
 
     void ResetowankoWartosci()
     {
-        selectedDirection = FlexDirection.Row;
+        flexDirection = FlexDirection.Row;
+        flexWrap = FlexWrap.Wrap;
         justifyContent = JustifyContent.FlexStart;
         alignContent = AlignContent.FlexStart;
     }

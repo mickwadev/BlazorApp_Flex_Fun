@@ -39,3 +39,10 @@ public enum AlignItems
     FlexStart=3,
     FlexEnd=4
 }
+
+public enum FlexWrap
+{
+    Nowrap = 0,
+    Wrap = 1,
+    WrapReverse = 2
+}

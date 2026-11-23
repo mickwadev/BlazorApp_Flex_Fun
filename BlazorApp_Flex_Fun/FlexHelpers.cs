@@ -7,11 +7,13 @@ public static class FlexHelpers
     public static string GetStyle(FlexDirection direction, 
         JustifyContent justifyContent,
         AlignContent alignContent,
-        AlignItems alignItems)
+        AlignItems alignItems,
+        FlexWrap flexWrap)
     {
         StringBuilder sb = new StringBuilder();
         sb.Append("Display: Flex;");
         sb.Append($"flex-direction: {EnumToCss(direction.ToString())};");
+        sb.Append($"flex-wrap: {EnumToCss(flexWrap.ToString())};");
         sb.Append($"justify-content: {EnumToCss(justifyContent.ToString())};");
         sb.Append($"align-content: {EnumToCss(alignContent.ToString())};");
         sb.Append($"align-items: {EnumToCss(alignItems.ToString())};");
