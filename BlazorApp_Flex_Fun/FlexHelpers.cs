@@ -52,4 +52,22 @@ public static class FlexHelpers
 
         return (MarkupString) sb.ToString();
     }
+
+    public static string CssStyleFromValues(StyleValues sv)
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append($"flex-basis: {sv.FlexBasis}px; ");
+        sb.Append($"flex-grow: {sv.FlexGrow}; ");
+        sb.Append($"flex-shrink: {sv.FlexShrink}; ");
+        if (sv.Width is not null)
+        {
+            sb.Append($"width: {sv.Width}px; ");
+        }
+        if (sv.Height is not null)
+        {
+            sb.Append($"height: {sv.Height}px; ");
+        }
+
+        return sb.ToString();
+    }
 }

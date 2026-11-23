@@ -2,11 +2,11 @@
 
 public class StyleValues
 {
-    public int? Width { get; set; } = Random.Shared.Next(30,100);
-    public int? Height { get; set; } = Random.Shared.Next(30, 100);
+    public int? Width { get; set; } = null;// Random.Shared.Next(30,100);
+    public int? Height { get; set; } = null;// Random.Shared.Next(30, 100);
 
-    public double FlexGrow { get; set; } = 0;
-    public double FlexShrink { get; set; } = 0;
+    public double FlexGrow { get; set; } = 1;
+    public double FlexShrink { get; set; } = 1;
     public int FlexBasis { get; set; } = 100;
 
     public int? Order { get; set; } = null;

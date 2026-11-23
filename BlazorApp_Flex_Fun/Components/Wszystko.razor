@@ -1,6 +1,9 @@
 ﻿@rendermode InteractiveServer
  
 <p>Container settings:</p>
+<input type="range" min="100" max="1000" step="1" @bind="@containerWidth" @bind:event="oninput"  />
+<input type="range" min="100" max="1000" step="1" @bind="@containerHeight" @bind:event="oninput"  />
+<p>@containerWidth x @containerHeight </p>
 <div style="display:flex">
     <FlexPropertyComponent @bind-Wlasciwosc="flexDirection"/>
     <FlexPropertyComponent @bind-Wlasciwosc="flexWrap"/>
@@ -26,7 +29,8 @@
     <p>@FlexHelpers.StyleFromValues(r.Style)</p>
 }
 @code {
-
+    public int containerWidth { get; set; } = 500;
+    public int containerHeight { get; set; } = 500 ;
     OpcjeRamki? aktualnieWybranaRamka;
     int? RamkaAktualnyOver = null;
 
@@ -40,7 +44,8 @@
 
     string GenerateStyle()
     {
-        return FlexHelpers
+        var st = $"width: {containerWidth}px; height: {containerHeight}px;";
+        return st + FlexHelpers
         .GetStyle(flexDirection, justifyContent, alignContent, alignItems,flexWrap);
     }
 
