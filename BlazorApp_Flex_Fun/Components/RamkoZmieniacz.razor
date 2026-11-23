@@ -12,7 +12,26 @@
     }">➖</button>
 
     // Here I must invoke callback to inform parent about change:
-    <input type="range" min="0" max="300" step="1" @bind="@(Opcje.Style.FlexBasis)" @bind:event="oninput" @bind:after="()=>{OpcjeChanged.InvokeAsync(Opcje);}" />
+    <div style="display:flex; flex-direction:column">
+
+    <label style="color:cornsilk">
+        <span>flex-basis</span>
+    <input type="range" min="0" max="300" step="1" @bind="@(Opcje.Style.FlexBasis)" @bind:event="oninput" @bind:after="async () => { await OpcjeChanged.InvokeAsync(Opcje); }" @bind:culture="System.Globalization.CultureInfo.InvariantCulture" />
+        <span>@(Opcje.Style.FlexBasis)</span>
+    </label>
+
+    <label style="color:cornsilk">
+        <span>flex-shrink</span>
+    <input type="range" min="0" max="1" step="0.01" @bind="@(Opcje.Style.FlexShrink)" @bind:event="oninput" @bind:after="async () => { await OpcjeChanged.InvokeAsync(Opcje); }" @bind:culture="System.Globalization.CultureInfo.InvariantCulture" />
+        <span>@(Opcje.Style.FlexShrink)</span>
+    </label>
+    <label style="color:cornsilk">
+        <span>flex-grow</span>
+        <input type="range" min="0" max="1" step="0.01" @bind="@(Opcje.Style.FlexGrow)" @bind:event="oninput" @bind:after="async () => { await OpcjeChanged.InvokeAsync(Opcje); }" @bind:culture="System.Globalization.CultureInfo.InvariantCulture" />
+        <span>@(Opcje.Style.FlexGrow)</span>
+    </label>
+    </div>
+    
     
 }
 
