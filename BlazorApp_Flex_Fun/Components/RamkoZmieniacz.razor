@@ -2,11 +2,11 @@
 {
     <p> @Opcje.Owocek</p>
     <button @onclick="() => { 
-        Opcje.Height += 10;
+        Opcje.Style.Height += 10;
         OpcjeChanged.InvokeAsync(Opcje);
     }">➕</button>
     <button @onclick="() => {
-        Opcje.Height -= 10;
+        Opcje.Style.Height -= 10;
         OpcjeChanged.InvokeAsync(Opcje);
     }">➖</button>
 }

@@ -1,6 +1,6 @@
 ﻿@rendermode InteractiveServer
  
-
+<p>Container settings:</p>
 <div style="display:flex">
     <FlexPropertyComponent @bind-Wlasciwosc="flexDirection"/>
     <FlexPropertyComponent @bind-Wlasciwosc="flexWrap"/>
@@ -29,14 +29,7 @@
     OpcjeRamki? aktualnieWybranaRamka;
     string? RamkaAktualnyOver = "";
 
-    List<OpcjeRamki> opcjeRamki = new()
-    {
-        new OpcjeRamki(){Owocek = "🍓",Id=0 },
-        new OpcjeRamki(){Owocek = "🥥",Id=1 },
-        new OpcjeRamki(){Owocek = "🍒",Id=2 },
-        new OpcjeRamki(){Owocek = "🍋",Id=3 },
-        new OpcjeRamki(){Owocek = "🍌",Id=4 }
-    };
+    List<OpcjeRamki> opcjeRamki = Ramki();
 
     FlexDirection flexDirection = FlexDirection.Row;
     FlexWrap flexWrap = FlexWrap.Wrap;
@@ -71,5 +64,20 @@
     private void RamknaOnPointerLeave()
     {
         RamkaAktualnyOver = null;
+    }
+
+    private static List<OpcjeRamki> Ramki()
+    {
+        StyleValues InitValues() => new StyleValues() { };
+
+        List<OpcjeRamki> ramki = new()
+        {
+            new OpcjeRamki(){Owocek = "🍓", Style = InitValues(), Id=0 },
+            new OpcjeRamki(){Owocek = "🥥", Style = InitValues(), Id=1 },
+            new OpcjeRamki(){Owocek = "🍒", Style = InitValues(), Id=2 },
+            new OpcjeRamki(){Owocek = "🍋", Style = InitValues(), Id=3 },
+            new OpcjeRamki(){Owocek = "🍌", Style = InitValues(), Id=4 }
+        };
+        return ramki;
     }
 }

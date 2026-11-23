@@ -46,3 +46,13 @@ public enum FlexWrap
     Wrap = 1,
     WrapReverse = 2
 }
+
+public enum AlignSelf
+{
+    Auto = 0,
+    FlexStart = 1,
+    FlexEnd=2,
+    Stretch = 3,
+    Center = 4,
+    Baseline  =5
+}
