@@ -15,9 +15,13 @@
  <button @onclick="ResetowankoWartosci">Resetuj wartości </button>
 
 <div class="rameczka" style="@GenerateStyle()">
-    @foreach(OpcjeRamki or in opcjeRamki)
+    @foreach(OpcjeRamki or in initialFrames)
     {
-        <Ramka opcje="or" Wybrana="WybranaRamka"
+        <Ramka 
+            opcje="or" 
+            @*To jest bardzo ciekawe! Teraz wartość selected zmieni się przy każdym renderowaniu!*@
+            Selected = "@(or == aktualnieWybranaRamka)"
+            Wybrana="WybranaRamka"
             RamkaOnPointerEnter="RamknaOnPointerEnter"
             RamkaOnPointerLeave="RamknaOnPointerLeave"/>
     }
@@ -26,7 +30,7 @@
 <RamkoZmieniacz @bind-Opcje="aktualnieWybranaRamka" />
 @if (RamkaAktualnyOver is not null)
 {
-    var r = opcjeRamki.Find(or => or.Id == RamkaAktualnyOver);
+    var r = initialFrames.Find(or => or.Id == RamkaAktualnyOver);
     <p>@FlexHelpers.StyleFromValues(r.Style)</p>
 }
 
@@ -40,7 +44,7 @@
     OpcjeRamki? aktualnieWybranaRamka;
     int? RamkaAktualnyOver = null;
 
-    List<OpcjeRamki> opcjeRamki = Ramki();
+    List<OpcjeRamki> initialFrames = CreateInitialFrames();
 
     FlexDirection flexDirection = FlexDirection.Row;
     FlexWrap flexWrap = FlexWrap.Wrap;
@@ -78,7 +82,7 @@
      //   RamkaAktualnyOver = null;
     }
 
-    private static List<OpcjeRamki> Ramki()
+    private static List<OpcjeRamki> CreateInitialFrames()
     {
         StyleValues InitValues() => new StyleValues() { };
 
@@ -88,7 +92,8 @@
             new OpcjeRamki(){Owocek = "🥥", Style = InitValues(), Id=1 },
             new OpcjeRamki(){Owocek = "🍒", Style = InitValues(), Id=2 },
             new OpcjeRamki(){Owocek = "🍋", Style = InitValues(), Id=3 },
-            new OpcjeRamki(){Owocek = "🍌", Style = InitValues(), Id=4 }
+            new OpcjeRamki(){Owocek = "🍌", Style = InitValues(), Id=4 },
+            new OpcjeRamki(){Owocek = "🥝", Style = InitValues(), Id=5 }
         };
         return ramki;
     }
