@@ -1,5 +1,6 @@
 ﻿using BlazorApp_Flex_Fun.Extenstions;
 using Microsoft.AspNetCore.Components;
+using System.Globalization;
 using System.Text;
 
 namespace BlazorApp_Flex_Fun;
@@ -39,8 +40,8 @@ public static class FlexHelpers
     {
         StringBuilder sb = new StringBuilder();
         sb.AppendHtmlNewLine($"flex-basis: {sv.FlexBasis}");
-        sb.AppendHtmlNewLine($"flex-grow: {sv.FlexGrow}");
-        sb.AppendHtmlNewLine($"flex-shrink: {sv.FlexShrink}");
+        sb.AppendHtmlNewLine($"flex-grow: {sv.FlexGrow.ToString(CultureInfo.InvariantCulture)}");
+        sb.AppendHtmlNewLine($"flex-shrink: {sv.FlexShrink.ToString(CultureInfo.InvariantCulture)}");
         if (sv.Width is not null)
         {
             sb.AppendHtmlNewLine($"width: {sv.Width}");
@@ -57,8 +58,8 @@ public static class FlexHelpers
     {
         StringBuilder sb = new StringBuilder();
         sb.Append($"flex-basis: {sv.FlexBasis}px; ");
-        sb.Append($"flex-grow: {sv.FlexGrow}; ");
-        sb.Append($"flex-shrink: {sv.FlexShrink}; ");
+        sb.Append($"flex-grow: {sv.FlexGrow.ToString(CultureInfo.InvariantCulture)}; ");
+        sb.Append($"flex-shrink: {sv.FlexShrink.ToString(CultureInfo.InvariantCulture)}; ");
         if (sv.Width is not null)
         {
             sb.Append($"width: {sv.Width}px; ");
