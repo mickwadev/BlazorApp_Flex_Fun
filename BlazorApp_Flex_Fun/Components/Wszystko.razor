@@ -22,12 +22,13 @@
 <RamkoZmieniacz @bind-Opcje="aktualnieWybranaRamka" />
 @if (RamkaAktualnyOver is not null)
 {
-    <p>@RamkaAktualnyOver</p>
+    var r = opcjeRamki.Find(or => or.Id == RamkaAktualnyOver);
+    <p>@FlexHelpers.StyleFromValues(r.Style)</p>
 }
 @code {
 
     OpcjeRamki? aktualnieWybranaRamka;
-    string? RamkaAktualnyOver = "";
+    int? RamkaAktualnyOver = null;
 
     List<OpcjeRamki> opcjeRamki = Ramki();
 
@@ -56,7 +57,7 @@
         aktualnieWybranaRamka = wybrana;
     }
 
-    private void RamknaOnPointerEnter(string id)
+    private void RamknaOnPointerEnter(int id)
     {
         RamkaAktualnyOver = id;
     }

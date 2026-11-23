@@ -20,14 +20,14 @@
     string dodatkowyStyl => clicked ? "border:dotted yellow 2px;":"";
 
     [Parameter]
-    public EventCallback<string> RamkaOnPointerEnter{ get; set; }
+    public EventCallback<int> RamkaOnPointerEnter{ get; set; }
 
     [Parameter]
     public EventCallback RamkaOnPointerLeave { get; set; }
 
     private async Task OnPointerEnter(PointerEventArgs e)
     {
-        await RamkaOnPointerEnter.InvokeAsync($"{opcje.Owocek} [{opcje.Id}]");
+        await RamkaOnPointerEnter.InvokeAsync(opcje.Id);
     }
 
     private async Task OnPointerLeave(PointerEventArgs e)

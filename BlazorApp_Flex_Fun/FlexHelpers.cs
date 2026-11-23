@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using BlazorApp_Flex_Fun.Extenstions;
+using Microsoft.AspNetCore.Components;
+using System.Text;
 
 namespace BlazorApp_Flex_Fun;
 
@@ -31,5 +33,23 @@ public static class FlexHelpers
             sb.Append($"{(char.IsUpper(c)?"-":"")}{char.ToLower(c)}");
         }
         return sb.ToString();
+    }
+
+    public static MarkupString StyleFromValues(StyleValues sv)
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.AppendHtmlNewLine($"flex-basis: {sv.FlexBasis}");
+        sb.AppendHtmlNewLine($"flex-grow: {sv.FlexGrow}");
+        sb.AppendHtmlNewLine($"flex-grow: {sv.FlexShrink}");
+        if (sv.Width is not null)
+        {
+            sb.AppendHtmlNewLine($"width: {sv.Width}");
+        }
+        if (sv.Height is not null)
+        {
+            sb.AppendHtmlNewLine($"height: {sv.Height}");
+        }
+
+        return (MarkupString) sb.ToString();
     }
 }
