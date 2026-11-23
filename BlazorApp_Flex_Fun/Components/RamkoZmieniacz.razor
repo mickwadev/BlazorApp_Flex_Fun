@@ -1,0 +1,21 @@
+﻿@if (Opcje is not null)
+{
+    <p> @Opcje.Owocek</p>
+    <button @onclick="() => { 
+        Opcje.Height += 10;
+        OpcjeChanged.InvokeAsync(Opcje);
+    }">➕</button>
+    <button @onclick="() => {
+        Opcje.Height -= 10;
+        OpcjeChanged.InvokeAsync(Opcje);
+    }">➖</button>
+}
+
+
+@code {
+    [Parameter]
+    public OpcjeRamki? Opcje { get; set;}
+
+    [Parameter]
+    public EventCallback<OpcjeRamki?> OpcjeChanged { get; set; }
+}

@@ -1,9 +1,11 @@
-﻿<div class="moja-ramka" style="@dodatkowyStyl width:@(opcje.Width)px; height:@(opcje.Height)px;" 
+﻿<div id="@opcje.Id" class="moja-ramka" style="@dodatkowyStyl width:@(opcje.Width)px; height:@(opcje.Height)px;" 
 @onclick="()=>
 {
     clicked = !clicked;
     Wybrana.InvokeAsync(opcje);
-}">
+}"
+@onpointerenter="OnPointerEnter"
+>
     <p>@opcje.Owocek</p>
 </div>
 
@@ -15,4 +17,12 @@
     public EventCallback<OpcjeRamki> Wybrana { get; set; }
     bool clicked = false;
     string dodatkowyStyl => clicked ? "border:dotted yellow 2px;":"";
+
+    [Parameter]
+    public EventCallback<string> RamkaOnPointerEnter{ get; set; }
+
+    private async Task OnPointerEnter(PointerEventArgs e)
+    {
+        await RamkaOnPointerEnter.InvokeAsync($"{opcje.Owocek} [{opcje.Id}]");
+    }
 }

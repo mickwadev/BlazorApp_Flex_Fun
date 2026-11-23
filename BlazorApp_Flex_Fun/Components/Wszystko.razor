@@ -12,27 +12,25 @@
 <div class="rameczka" style="@GenerateStyle()">
     @foreach(OpcjeRamki or in opcjeRamki)
     {
-        <Ramka opcje="or" Wybrana="WybranaRamka"/>
+        <Ramka opcje="or" Wybrana="WybranaRamka"
+            RamkaOnPointerEnter="RamknaOnPointerEnter"/>
     }
  </div>
 
- @if(wybranaRamka is not null)
-{
-    <p> @wybranaRamka.Owocek</p>
-    <button @onclick="()=>{wybranaRamka.Height +=10;}" >➕</button>
-    <button @onclick="() => { wybranaRamka.Height -= 10; }">➖</button>
-}
+<RamkoZmieniacz @bind-Opcje="aktualnieWybranaRamka" />
+<p>@RamkaAktualnyOver</p>
 @code {
 
-    OpcjeRamki? wybranaRamka;
+    OpcjeRamki? aktualnieWybranaRamka;
+    string? RamkaAktualnyOver = "";
 
     List<OpcjeRamki> opcjeRamki = new()
     {
-        new OpcjeRamki(){Owocek = "🍓" },
-        new OpcjeRamki(){Owocek = "🥥" },
-        new OpcjeRamki(){Owocek = "🍒" },
-        new OpcjeRamki(){Owocek = "🍋" },
-        new OpcjeRamki(){Owocek = "🍌" }
+        new OpcjeRamki(){Owocek = "🍓",Id=0 },
+        new OpcjeRamki(){Owocek = "🥥",Id=1 },
+        new OpcjeRamki(){Owocek = "🍒",Id=2 },
+        new OpcjeRamki(){Owocek = "🍋",Id=3 },
+        new OpcjeRamki(){Owocek = "🍌",Id=4 }
     };
 
     FlexDirection selectedDirection = FlexDirection.Row;
@@ -55,6 +53,11 @@
 
     private void WybranaRamka(OpcjeRamki wybrana)
     {
-        wybranaRamka = wybrana;
+        aktualnieWybranaRamka = wybrana;
+    }
+
+    private void RamknaOnPointerEnter(string id)
+    {
+        RamkaAktualnyOver = id;
     }
 }
