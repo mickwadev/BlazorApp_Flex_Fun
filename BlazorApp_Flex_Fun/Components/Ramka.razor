@@ -1,4 +1,4 @@
-﻿<div id="@opcje.Id" class="moja-ramka" style="@dodatkowyStyl @oo" 
+﻿<div id="@opcje.Id" class="moja-ramka" style="@dodatkowyStyl @flexStyle"
 @onclick="()=>
 {
     clicked = !clicked;
@@ -14,7 +14,7 @@
     [Parameter, EditorRequired]
     public OpcjeRamki opcje { get; set; }
 
-    private string oo => FlexHelpers.CssStyleFromValues(opcje.Style);
+    private string flexStyle => FlexHelpers.CssStyleFromValues(opcje.Style);
 
     [Parameter]
     public EventCallback<OpcjeRamki> Wybrana { get; set; }

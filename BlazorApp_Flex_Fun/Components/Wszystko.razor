@@ -1,6 +1,7 @@
 ﻿@rendermode InteractiveServer
  
 <p>Container settings:</p>
+@*Fot those inputs I do not need to inform that value has changed, because they are not inside other component*@
 <input type="range" min="100" max="1000" step="1" @bind="@containerWidth" @bind:event="oninput"  />
 <input type="range" min="100" max="1000" step="1" @bind="@containerHeight" @bind:event="oninput"  />
 <p>@containerWidth x @containerHeight </p>
@@ -27,6 +28,11 @@
 {
     var r = opcjeRamki.Find(or => or.Id == RamkaAktualnyOver);
     <p>@FlexHelpers.StyleFromValues(r.Style)</p>
+}
+
+@if(aktualnieWybranaRamka is not null)
+{
+    <p>flex-basis: @aktualnieWybranaRamka.Style.FlexBasis</p>
 }
 @code {
     public int containerWidth { get; set; } = 500;
@@ -69,7 +75,7 @@
 
     private void RamknaOnPointerLeave()
     {
-        RamkaAktualnyOver = null;
+     //   RamkaAktualnyOver = null;
     }
 
     private static List<OpcjeRamki> Ramki()

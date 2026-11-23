@@ -40,7 +40,7 @@ public static class FlexHelpers
         StringBuilder sb = new StringBuilder();
         sb.AppendHtmlNewLine($"flex-basis: {sv.FlexBasis}");
         sb.AppendHtmlNewLine($"flex-grow: {sv.FlexGrow}");
-        sb.AppendHtmlNewLine($"flex-grow: {sv.FlexShrink}");
+        sb.AppendHtmlNewLine($"flex-shrink: {sv.FlexShrink}");
         if (sv.Width is not null)
         {
             sb.AppendHtmlNewLine($"width: {sv.Width}");
