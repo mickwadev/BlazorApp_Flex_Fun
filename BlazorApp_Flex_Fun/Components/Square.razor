@@ -2,7 +2,9 @@
 @using System.Text
 
 <div onclick="@HandleClick"  style="@StyleBuilder()">
+    <p style="flex-grow:0;color:bisque" >
         @Data.Id
+    </p>
     </div>
 @code {
     [Parameter, EditorRequired]
@@ -17,6 +19,7 @@
     private string StyleBuilder()
     {
         StringBuilder sb = new StringBuilder();
+        sb.Append("display:flex;align-items:center;justify-content:center;");
         sb.Append($"border:2px {(IsSelected?"dotted":"solid")} {Data.Style.BorderColor};");
         if (Data.Style.Width != null)
         {
