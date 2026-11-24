@@ -1,0 +1,10 @@
+/* CSS for StyleSetterComponent component */
+.slidery{
+    display:inline-grid;
+    grid-template-columns: auto 200px auto;
+    column-gap:20px;
+}
+
+label{
+    color:moccasin;
+}

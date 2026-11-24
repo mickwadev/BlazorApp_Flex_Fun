@@ -9,16 +9,15 @@
     {
         var index = i; // ten index jest potrzebny, żeby była nowa wartość dla każdego wykonania w pętli, bo tam blazor kompiluje z ref czy coś :P
         Paczaj(index);
-        info += dd[index].Id;
+        
         <Square @key="dd[index].Id" 
         @bind-Data="dd[index]"
         @bind-Data:after="async () => await ChangeSelecteSquare(dd[index])"
         IsSelected="@(dd[index] == SelectedData)" />
     }
-  
-
-    
 </div>
+
+<StyleSetterComponent @bind-Data="SelectedData" />
 <div style="display:flex;flex-direction:column;align-items:flex-start">
    @*  <InputRadioGroup @bind-Value="displayType">
     @foreach (DisplayType dt in Enum.GetValues<DisplayType>())
@@ -70,6 +69,7 @@
     private async Task ChangeSelecteSquare(SquareData sd)
     {
         SelectedData = sd;
+        info = $"Selected item id: {SelectedData.Id}";
     }
 
     private void Paczaj<T>(T msg) => Console.WriteLine($"👀👀👀👀👀 {msg.ToString()}");

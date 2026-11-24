@@ -1,0 +1,25 @@
+﻿@rendermode InteractiveServer
+
+@if(Data is not null)
+{
+    <div class="slidery">
+    <label>Width:</label>
+    <input type="range" min="0" max="300" step="1"
+           @bind="@(Data.Style.Width)"
+           @bind:event="oninput" @bind:after="async () => { await DataChanged.InvokeAsync(Data); }" @bind:culture="System.Globalization.CultureInfo.InvariantCulture" />
+    <label>@(Data.Style.Width)</label>
+
+        <label>Height:</label>
+        <input type="range" min="0" max="300" step="1"
+               @bind="@(Data.Style.Height)"
+               @bind:event="oninput" @bind:after="async () => { await DataChanged.InvokeAsync(Data); }" @bind:culture="System.Globalization.CultureInfo.InvariantCulture" />
+        <label>@(Data.Style.Height)</label>
+    </div>
+}
+@code {
+    [Parameter]
+    public SquareData? Data { get; set; }
+
+    [Parameter]
+    public EventCallback<SquareData> DataChanged { get; set; }
+}
