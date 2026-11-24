@@ -1,3 +1,9 @@
+:root
+{
+    --dorsz: #0079c8;
+    --morświn: #f7fa00
+}
+
 h1:focus {
     outline: none;
 }

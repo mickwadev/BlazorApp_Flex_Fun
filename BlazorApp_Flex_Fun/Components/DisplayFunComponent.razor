@@ -1,0 +1,42 @@
+﻿@using FH = FlexHelpers
+
+<PageTitle>Learn dislpay types 🤩</PageTitle>
+<div style="width:333px;height:333px;border:solid 2px #0079c8">
+    @foreach(SquareData sd in InitSquares())
+    {
+        <Square Data="sd"/>
+    }
+  
+
+    
+</div>
+<div style="display:flex;flex-direction:column;align-items:flex-start">
+   @*  <InputRadioGroup @bind-Value="displayType">
+    @foreach (DisplayType dt in Enum.GetValues<DisplayType>())
+    {
+        <label>
+            <InputRadio Value="dt"/>
+            @FH.EnumToCss(dt.ToString())
+        </label>
+    }
+    </InputRadioGroup> *@
+
+    <p>Block - stars in new line, and stretches to whole width</p>
+</div>
+@code {
+
+    IEnumerable<SquareData> InitSquares() => GetColors().Select(c => new SquareData(c));
+    
+    List<string> GetColors()
+    {
+        List<string> colors = new List<string>()
+        {
+            "#e87b05",
+            "#2cb903",
+            "#9d00cb",
+            "#f7fa00"
+        };
+        return colors;
+    }
+    
+}

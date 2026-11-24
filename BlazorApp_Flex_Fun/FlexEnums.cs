@@ -31,7 +31,7 @@ public enum AlignContent
     Stretch = 6
 }
 
-// jak układają się element w cross axis?
+// Jak układają się element w cross axis?
 public enum AlignItems
 { 
     Stretch=1,
@@ -54,5 +54,5 @@ public enum AlignSelf
     FlexEnd=2,
     Stretch = 3,
     Center = 4,
-    Baseline  =5
+    Baseline = 5
 }
