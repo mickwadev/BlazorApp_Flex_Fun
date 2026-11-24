@@ -2,7 +2,7 @@
 @using System.Text
 
 <div onclick="@HandleClick"  style="@StyleBuilder()">
-    <p style="flex-grow:0;color:bisque" >
+    <p style="flex-grow:0;color:bisque;" >
         @Data.Id
     </p>
     </div>
@@ -16,10 +16,21 @@
     [Parameter]
     public bool IsSelected { get; set; }
 
+    private string SetDisplay()
+    {
+        // flex is for controlling children, and here I always want to control children with flex
+
+        return Data.Style.DisplayType switch
+        {
+            DisplayType.Block => "flex",
+            DisplayType.Inline => "inline flex"
+        };
+    }
+
     private string StyleBuilder()
     {
         StringBuilder sb = new StringBuilder();
-        sb.Append("display:flex;align-items:center;justify-content:center;");
+        sb.Append($"display:{SetDisplay()};align-items:center;justify-content:center;");
         sb.Append($"border:2px {(IsSelected?"dotted":"solid")} {Data.Style.BorderColor};");
         if (Data.Style.Width != null)
         {
@@ -29,6 +40,15 @@
         {
             sb.Append($"height:{Data.Style.Height}px;");
         }
+
+         
+        sb.Append($"margin-top:{Data.Style.MarginTop}px;");
+        sb.Append($"margin-bottom:{Data.Style.MarginBottom}px;");
+        sb.Append($"margin-left:{Data.Style.MarginLeft}px;");
+        sb.Append($"margin-right:{Data.Style.MarginRight}px;");
+        
+        
+
         return sb.ToString();
     }
 

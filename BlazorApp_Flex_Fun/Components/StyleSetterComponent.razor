@@ -1,5 +1,5 @@
 ﻿@rendermode InteractiveServer
-
+@using FH = FlexHelpers;
 @if(Data is not null)
 {
     <div class="slidery">
@@ -14,7 +14,30 @@
                @bind="@(Data.Style.Height)"
                @bind:event="oninput" @bind:after="async () => { await DataChanged.InvokeAsync(Data); }" @bind:culture="System.Globalization.CultureInfo.InvariantCulture" />
         <label>@(Data.Style.Height)</label>
+
+
+        <label>margin-top:</label>
+        <input type="range" min="0" max="300" step="1"
+               @bind="@(Data.Style.MarginTop)"
+               @bind:event="oninput" @bind:after="async () => { await DataChanged.InvokeAsync(Data); }" @bind:culture="System.Globalization.CultureInfo.InvariantCulture" />
+        <label>@(Data.Style.MarginTop)</label>
+
+        <label>margin-right:</label>
+        <input type="range" min="0" max="300" step="1"
+               @bind="@(Data.Style.MarginRight)"
+               @bind:event="oninput" @bind:after="async () => { await DataChanged.InvokeAsync(Data); }" @bind:culture="System.Globalization.CultureInfo.InvariantCulture" />
+        <label>@(Data.Style.MarginRight)</label>
+
     </div>
+    <InputRadioGroup @bind-Value="Data.Style.DisplayType" @bind-Value:after="async () => { await DataChanged.InvokeAsync(Data); }">
+    @foreach (DisplayType dt in Enum.GetValues<DisplayType>())
+    {
+        <label>
+            <InputRadio Value="dt"/>
+            @FH.EnumToCss(dt.ToString())
+        </label>
+    }
+    </InputRadioGroup>
 }
 @code {
     [Parameter]

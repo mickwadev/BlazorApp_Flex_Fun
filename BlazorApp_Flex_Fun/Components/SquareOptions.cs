@@ -2,7 +2,7 @@
 
 public class SquareCssStyleValues
 {
-    DisplayType DisplayType { get; set; }
+    public DisplayType DisplayType { get; set; }
     public required string BorderColor { get; set; }
     public int? Width { get; set; } = 42;
     public int? Height { get; set; } = 42;

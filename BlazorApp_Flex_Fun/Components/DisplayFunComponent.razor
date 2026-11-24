@@ -19,15 +19,7 @@
 
 <StyleSetterComponent @bind-Data="SelectedData" />
 <div style="display:flex;flex-direction:column;align-items:flex-start">
-   @*  <InputRadioGroup @bind-Value="displayType">
-    @foreach (DisplayType dt in Enum.GetValues<DisplayType>())
-    {
-        <label>
-            <InputRadio Value="dt"/>
-            @FH.EnumToCss(dt.ToString())
-        </label>
-    }
-    </InputRadioGroup> *@
+  
 
     <p>Block - stars in new line, and stretches to whole width</p>
 </div>
