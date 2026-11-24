@@ -1,7 +1,7 @@
 ﻿@rendermode InteractiveServer
 @using System.Text
 
-<div  style="@StyleBuilder()">
+<div onclick="@HandleClick"  style="@StyleBuilder()">
         @Data.Id
     </div>
 @code {
