@@ -1,10 +1,18 @@
 ﻿@using FH = FlexHelpers
 
 <PageTitle>Learn dislpay types 🤩</PageTitle>
+<p>@info</p>
 <div style="width:333px;height:333px;border:solid 2px #0079c8">
-    @foreach(SquareData sd in InitSquares())
+
+    @for(int i=0;i<dd.Count;i++)
     {
-        <Square Data="sd"/>
+        var index = i; // ten index jest potrzebny, żeby była nowa wartość dla każdego wykonania w pętli, bo tam blazor kompiluje z ref czy coś :P
+        Paczaj(index);
+        info += dd[index].Id;
+        <Square @key="dd[index].Id" 
+        @bind-Data="dd[index]"
+        @bind-Data:after="async () => await ChangeSelecteSquare(dd[index])"
+        IsSelected="@(dd[index] == SelectedData)" />
     }
   
 
@@ -24,9 +32,28 @@
     <p>Block - stars in new line, and stretches to whole width</p>
 </div>
 @code {
+    List<SquareData> dd;  
+    string info = "Info:";
 
-    IEnumerable<SquareData> InitSquares() => GetColors().Select(c => new SquareData(c));
-    
+    protected override void OnInitialized()
+    {
+        dd = InitSquares();
+        base.OnInitialized();
+    }
+
+    List<SquareData> InitSquares()
+    {
+        List<SquareData> sd = new();
+        var colors = GetColors();
+        for(int i=0;i< colors.Count;i++)
+        {
+            sd.Add(new SquareData(colors[i]) { Id = i });
+        }
+        return sd;
+    }
+
+    SquareData? SelectedData = null;
+
     List<string> GetColors()
     {
         List<string> colors = new List<string>()
@@ -38,5 +65,12 @@
         };
         return colors;
     }
-    
+
+    private async Task ChangeSelecteSquare(SquareData sd)
+    {
+        SelectedData = sd;
+    }
+
+    private void Paczaj<T>(T msg) => Console.WriteLine($"👀👀👀👀👀 {msg.ToString()}");
+
 }

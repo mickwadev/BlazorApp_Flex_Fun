@@ -1,4 +1,4 @@
-﻿namespace BlazorApp_Flex_Fun;
+﻿namespace BlazorApp_Flex_Fun.Components;
 
 public class SquareCssStyleValues
 {

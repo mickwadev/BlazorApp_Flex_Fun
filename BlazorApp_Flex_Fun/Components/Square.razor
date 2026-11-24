@@ -1,0 +1,36 @@
+﻿@rendermode InteractiveServer
+@using System.Text
+
+<div  style="@StyleBuilder()">
+        @Data.Id
+    </div>
+@code {
+    [Parameter, EditorRequired]
+    public SquareData Data { get; set; }
+
+    [Parameter]
+    public EventCallback<SquareData> DataChanged { get; set; }
+
+    [Parameter]
+    public bool IsSelected { get; set; }
+
+    private string StyleBuilder()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append($"border:2px {(IsSelected?"dotted":"solid")} {Data.Style.BorderColor};");
+        if (Data.Style.Width != null)
+        {
+            sb.Append($"width:{Data.Style.Width}px;");
+        }
+        if (Data.Style.Height != null)
+        {
+            sb.Append($"height:{Data.Style.Width}px;");
+        }
+        return sb.ToString();
+    }
+
+    private async Task HandleClick()
+    {
+        await DataChanged.InvokeAsync(Data);    
+    }
+}

@@ -1,4 +1,6 @@
-﻿namespace BlazorApp_Flex_Fun;
+﻿using BlazorApp_Flex_Fun.Components;
+
+namespace BlazorApp_Flex_Fun;
 
 public class SquareData(string borderColor)
 {
