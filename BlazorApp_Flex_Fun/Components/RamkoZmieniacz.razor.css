@@ -1,0 +1,8 @@
+/* CSS for RamkoZmieniacz component */
+.controls
+{
+    display:inline-grid;
+    grid-template-columns: auto 200px auto;
+    column-gap: 20px;
+    color:cornsilk;
+}
