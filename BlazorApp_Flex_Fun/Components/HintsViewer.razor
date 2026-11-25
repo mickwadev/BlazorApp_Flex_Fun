@@ -1,0 +1,18 @@
+﻿@if(Hint is not null)
+{
+     var hints = Hints.GetHints(Hint);
+     if(hints.Count>0)
+    {
+        <div class="hints">
+        <p>@Hint</p>
+            @foreach (var hint in hints)
+        {
+        <p>📌@hint</p>
+        }
+    </div>
+    }
+}
+@code {
+    [Parameter]
+    public string? Hint{ get; set; }
+}

@@ -46,11 +46,11 @@ public static class FlexHelpers
         sb.AppendHtmlNewLine($"flex-basis: {sv.FlexBasis}");
         sb.AppendHtmlNewLine($"flex-grow: {sv.FlexGrow.ToString(CultureInfo.InvariantCulture)}");
         sb.AppendHtmlNewLine($"flex-shrink: {sv.FlexShrink.ToString(CultureInfo.InvariantCulture)}");
-        if (sv.Width is not null)
+        if (sv.UseFixedWidth)
         {
             sb.AppendHtmlNewLine($"width: {sv.Width}");
         }
-        if (sv.Height is not null)
+        if (sv.UseFixedHeight)
         {
             sb.AppendHtmlNewLine($"height: {sv.Height}");
         }
@@ -65,11 +65,11 @@ public static class FlexHelpers
         sb.Append($"flex-basis: {sv.FlexBasis}px; ");
         sb.Append($"flex-grow: {sv.FlexGrow.ToString(CultureInfo.InvariantCulture)}; ");
         sb.Append($"flex-shrink: {sv.FlexShrink.ToString(CultureInfo.InvariantCulture)}; ");
-        if (sv.Width is not null)
+        if (sv.UseFixedWidth)
         {
             sb.Append($"width: {sv.Width}px; ");
         }
-        if (sv.Height is not null)
+        if (sv.UseFixedHeight)
         {
             sb.Append($"height: {sv.Height}px; ");
         }

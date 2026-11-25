@@ -2,9 +2,9 @@
 @typeparam T where T:struct, Enum
 @using FH = FlexHelpers
 
-<div style="display:flex; flex-direction:column; border: solid 2px #999; border-radius:8px;"
+<div style="display:flex; flex-shrink:0; flex-direction:column; border: solid 2px #999; border-radius:8px;"
 @onmouseenter="OnMouseEnter">
-    <p class="nazwa-parametru">@ParamTypeName</p>
+    <p style="align-self:center" class="nazwa-parametru">@ParamTypeName</p>
     @*Name musi być unique bo inaczej będzie traktował wszystkie InputRadio jak jedną grupę *@ 
     <InputRadioGroup Name="@ParamTypeName" @bind-Value="Wlasciwosc" @bind-Value:after="ZmienionaWartosc">
 

@@ -7,14 +7,15 @@
 <input type="range" min="0" max="100" step="1" @bind="@rowGap" @bind:event="oninput" />
 <input type="range" min="0" max="100" step="1" @bind="@gap" @bind:event="oninput" />
 <p>@containerWidth x @containerHeight @rowGap @gap </p>
-<div style="display:flex">
+<div style="display:flex;gap:5px;">
     <FlexPropertyComponent @bind-Wlasciwosc="flexDirection" ShowHint="ShowHint"/>
     <FlexPropertyComponent @bind-Wlasciwosc="flexWrap" ShowHint="ShowHint"/>
     <FlexPropertyComponent @bind-Wlasciwosc="justifyContent" ShowHint="ShowHint"/>
     <FlexPropertyComponent @bind-Wlasciwosc="alignContent" ShowHint="ShowHint"/>
-    <FlexPropertyComponent @bind-Wlasciwosc="alignItems" ShowHint="ShowHint"/>
+    <FlexPropertyComponent @bind-Wlasciwosc="alignItems" ShowHint="ShowHint" />
+    <HintsViewer Hint="@hint" />
 </div>
-<p> @Hints.GetHint(hint)</p>
+
  <button @onclick="ResetowankoWartosci">Resetuj wartości </button>
 
 <div class="rameczka" style="@GenerateStyle()">
@@ -48,7 +49,7 @@
     public int gap { get; set; } = 0;       // gap between elements
     OpcjeRamki? aktualnieWybranaRamka;
     int? RamkaAktualnyOver = null;
-    string hint = "";
+    string? hint = "";
 
     List<OpcjeRamki> initialFrames = CreateInitialFrames();
 

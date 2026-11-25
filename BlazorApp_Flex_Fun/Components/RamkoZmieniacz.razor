@@ -5,14 +5,37 @@
 @if (Opcje is not null)
 {
     <p> @Opcje.Owocek</p>
-    <button @onclick="() => { 
-        Opcje.Style.Height += 10;
-        OpcjeChanged.InvokeAsync(Opcje);
-    }">➕</button>
-    <button @onclick="() => {
-        Opcje.Style.Height -= 10;
-        OpcjeChanged.InvokeAsync(Opcje);
-    }">➖</button>
+    <label>Use fixed width? <input type="checkbox"
+        checked="@Opcje.Style.UseFixedWidth"
+                                @onchange="OnWidthCheckboxChanged" />
+    </label>
+    if(Opcje.Style.UseFixedWidth)
+    {
+        <button @onclick="() => { 
+            Opcje.Style.Width += 10;
+            OpcjeChanged.InvokeAsync(Opcje);
+        }">➕</button>
+        <button @onclick="() => {
+            Opcje.Style.Width -= 10;
+            OpcjeChanged.InvokeAsync(Opcje);
+        }">➖</button>
+    }
+    <label>
+        Use fixed height? 
+        <input type="checkbox" checked="@Opcje.Style.UseFixedHeight"
+               @onchange="OnHeightCheckboxChanged" />
+    </label>
+    if(Opcje.Style.UseFixedHeight)
+    {
+        <button @onclick="() => { 
+            Opcje.Style.Height += 10;
+            OpcjeChanged.InvokeAsync(Opcje);
+        }">➕</button>
+        <button @onclick="() => {
+            Opcje.Style.Height -= 10;
+            OpcjeChanged.InvokeAsync(Opcje);
+        }">➖</button>
+    }
 
     // Here I must invoke callback to inform parent about change:
     <div class="controls">
@@ -56,4 +79,16 @@
 
     [Parameter]
     public EventCallback<OpcjeRamki?> OpcjeChanged { get; set; }
+
+    private async Task OnHeightCheckboxChanged(ChangeEventArgs e)
+    {
+        Opcje.Style.UseFixedHeight = (bool)e.Value;
+        await OpcjeChanged.InvokeAsync(Opcje);
+    }
+
+    private async Task OnWidthCheckboxChanged(ChangeEventArgs e)
+    {
+        Opcje.Style.UseFixedWidth = (bool)e.Value;
+        await OpcjeChanged.InvokeAsync(Opcje);
+    }
 }
