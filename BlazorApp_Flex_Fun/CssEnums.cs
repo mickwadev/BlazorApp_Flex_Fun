@@ -7,6 +7,7 @@ public enum DisplayType
     InlineBlock = 2,
 }
 
+// great that it is not used for layout anymore. It is used to wrap text around images.
 public enum FloatType
 {
     None = 0,
