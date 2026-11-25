@@ -3,6 +3,7 @@
 public class SquareCssStyleValues
 {
     public DisplayType DisplayType { get; set; }
+    public FloatType FloatType { get; set; } = FloatType.None;
     public required string BorderColor { get; set; }
 
     public bool UseFixedWidth { get; set; } = true;

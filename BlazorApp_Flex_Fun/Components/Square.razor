@@ -24,22 +24,30 @@
         };
     }
 
+    private string SetFloat() => Data.Style.FloatType.ToString().ToLower();
+
     private string StyleBuilder()
     {
         StringBuilder sb = new StringBuilder();
         sb.Append($"display:{SetDisplay()};");
         sb.Append($"border:2px {(IsSelected?"dotted":"solid")} {Data.Style.BorderColor};");
         sb.Append($"box-sizing: border-box;");
-        
+
         if (Data.Style.UseFixedWidth)
         {
             sb.Append($"width:{Data.Style.Width}px;");
         }
+
         if (Data.Style.UseFixedHeight)
         {
             sb.Append($"height:{Data.Style.Height}px;");
         }
- 
+
+        if(Data.Style.FloatType != FloatType.None)
+        {
+            sb.Append($"float:{SetFloat()}");
+        }
+
         if (Data.Style.MarginTop >0)  sb.Append($"margin-top:{Data.Style.MarginTop}px;");
         if (Data.Style.MarginBottom > 0) sb.Append($"margin-bottom:{Data.Style.MarginBottom}px;");
         if (Data.Style.MarginLeft > 0) sb.Append($"margin-left:{Data.Style.MarginLeft}px;");

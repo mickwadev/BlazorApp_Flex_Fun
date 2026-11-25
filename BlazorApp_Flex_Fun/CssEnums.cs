@@ -6,3 +6,10 @@ public enum DisplayType
     Inline = 1,
     InlineBlock = 2,
 }
+
+public enum FloatType
+{
+    None = 0,
+    Right = 1,
+    Left = 2
+}

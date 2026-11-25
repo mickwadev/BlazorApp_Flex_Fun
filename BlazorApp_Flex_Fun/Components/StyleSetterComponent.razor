@@ -2,6 +2,15 @@
 @using FH = FlexHelpers;
 @if(Data is not null)
 {
+    <InputRadioGroup @bind-Value="Data.Style.FloatType" @bind-Value:after="async () => await DataChanged.InvokeAsync(Data)">
+        @foreach (var floatType in Enum.GetValues<FloatType>())
+        {
+            <label>
+                <InputRadio Value="floatType"/>
+                @FlexHelpers.EnumToCss(floatType);
+            </label>            
+        }
+    </InputRadioGroup>
     <div style="display:flex;flex-direction:column;width:433px;">
     <label>
         Fixed width?
@@ -56,8 +65,9 @@
                @bind:event="oninput" @bind:after="async () => { await DataChanged.InvokeAsync(Data); }" @bind:culture="System.Globalization.CultureInfo.InvariantCulture" />
         <label>@(Data.Style.MarginLeft)</label>
 
-
-        @* Padding sliders*@
+        @if(false)
+        {
+            @* Padding sliders*@
         <label>padding-top:</label>
         <input type="range" min="0" max="300" step="1"
                 @bind="@(Data.Style.PaddingTop)"
@@ -81,6 +91,7 @@
                 @bind="@(Data.Style.PaddingLeft)"
                 @bind:event="oninput" @bind:after="async () => { await DataChanged.InvokeAsync(Data); }" @bind:culture="System.Globalization.CultureInfo.InvariantCulture" />
         <label>@(Data.Style.PaddingLeft)</label>
+        }
       </div>
     </div>
     <InputRadioGroup @bind-Value="Data.Style.DisplayType" @bind-Value:after="async () => { await DataChanged.InvokeAsync(Data); }">
