@@ -2,3 +2,7 @@
 p{
     color:aliceblue;
 }
+
+.red-border {
+    border: solid 2px #c80000
+}
