@@ -1,10 +1,8 @@
 ﻿@rendermode InteractiveServer
 @using System.Text
 
-<div onclick="@HandleClick"  style="@StyleBuilder()">
-    <p style="flex-grow:0;color:bisque;" >
-        @Data.Id
-    </p>
+    <div onclick="@HandleClick" style="@StyleBuilder();color:bisque;padding:5px;">
+         @Data.Id
     </div>
 @code {
     [Parameter, EditorRequired]
@@ -18,19 +16,18 @@
 
     private string SetDisplay()
     {
-        // flex is for controlling children, and here I always want to control children with flex
-
         return Data.Style.DisplayType switch
         {
-            DisplayType.Block => "flex",
-            DisplayType.Inline => "inline flex"
+            DisplayType.Block => "block",
+            DisplayType.Inline => "inline",
+            DisplayType.InlineBlock => "inline-block"
         };
     }
 
     private string StyleBuilder()
     {
         StringBuilder sb = new StringBuilder();
-        sb.Append($"display:{SetDisplay()};align-items:center;justify-content:center;");
+        sb.Append($"display:{SetDisplay()};");
         sb.Append($"border:2px {(IsSelected?"dotted":"solid")} {Data.Style.BorderColor};");
         if (Data.Style.Width != null)
         {
