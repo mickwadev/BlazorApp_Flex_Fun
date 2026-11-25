@@ -2,23 +2,39 @@
 @using FH = FlexHelpers;
 @if(Data is not null)
 {
+    <div style="display:flex;flex-direction:column;width:433px;">
+    <label>
+        Fixed width?
+        <input type="checkbox" checked="@Data.Style.UseFixedWidth" @onchange="OnWidthCheckboxChanged" />
+    </label>
+    <label>
+        Fixed height?
+        <input type="checkbox" checked="@Data.Style.UseFixedHeight" @onchange="OnHeightCheckboxChanged" />
+    </label>
     <div class="slidery">
-    <label>Width:</label>
-    <input type="range" min="0" max="300" step="1"
-           @bind="@(Data.Style.Width)"
-           @bind:event="oninput" @bind:after="async () => { await DataChanged.InvokeAsync(Data); }" @bind:culture="System.Globalization.CultureInfo.InvariantCulture" />
-    <label>@(Data.Style.Width)</label>
 
+        @if(Data.Style.UseFixedWidth)
+            {
+            <label>Width:</label>
+            <input type="range" min="0" max="300" step="1"
+                   @bind="@(Data.Style.Width)"
+                   @bind:event="oninput" @bind:after="async () => { await DataChanged.InvokeAsync(Data); }" @bind:culture="System.Globalization.CultureInfo.InvariantCulture" />
+            <label>@(Data.Style.Width)</label>
+        }
+        @if(Data.Style.UseFixedHeight)
+        {
         <label>Height:</label>
         <input type="range" min="0" max="300" step="1"
                @bind="@(Data.Style.Height)"
                @bind:event="oninput" @bind:after="async () => { await DataChanged.InvokeAsync(Data); }" @bind:culture="System.Globalization.CultureInfo.InvariantCulture" />
         <label>@(Data.Style.Height)</label>
+        }
 
-
+@* Margin sliders*@
         <label>margin-top:</label>
         <input type="range" min="0" max="300" step="1"
                @bind="@(Data.Style.MarginTop)"
+
                @bind:event="oninput" @bind:after="async () => { await DataChanged.InvokeAsync(Data); }" @bind:culture="System.Globalization.CultureInfo.InvariantCulture" />
         <label>@(Data.Style.MarginTop)</label>
 
@@ -28,6 +44,44 @@
                @bind:event="oninput" @bind:after="async () => { await DataChanged.InvokeAsync(Data); }" @bind:culture="System.Globalization.CultureInfo.InvariantCulture" />
         <label>@(Data.Style.MarginRight)</label>
 
+        <label>margin-bottom:</label>
+        <input type="range" min="0" max="300" step="1"
+               @bind="@(Data.Style.MarginBottom)"
+               @bind:event="oninput" @bind:after="async () => { await DataChanged.InvokeAsync(Data); }" @bind:culture="System.Globalization.CultureInfo.InvariantCulture" />
+        <label>@(Data.Style.MarginBottom)</label>
+
+        <label>margin-left:</label>
+        <input type="range" min="0" max="300" step="1"
+               @bind="@(Data.Style.MarginLeft)"
+               @bind:event="oninput" @bind:after="async () => { await DataChanged.InvokeAsync(Data); }" @bind:culture="System.Globalization.CultureInfo.InvariantCulture" />
+        <label>@(Data.Style.MarginLeft)</label>
+
+
+        @* Padding sliders*@
+        <label>padding-top:</label>
+        <input type="range" min="0" max="300" step="1"
+                @bind="@(Data.Style.PaddingTop)"
+                @bind:event="oninput" @bind:after="async () => { await DataChanged.InvokeAsync(Data); }" @bind:culture="System.Globalization.CultureInfo.InvariantCulture" />
+        <label>@(Data.Style.PaddingTop)</label>
+
+        <label>padding-right:</label>
+        <input type="range" min="0" max="300" step="1"
+                @bind="@(Data.Style.PaddingRight)"
+                @bind:event="oninput" @bind:after="async () => { await DataChanged.InvokeAsync(Data); }" @bind:culture="System.Globalization.CultureInfo.InvariantCulture" />
+        <label>@(Data.Style.PaddingRight)</label>
+
+        <label>padding-bottom:</label>
+        <input type="range" min="0" max="300" step="1"
+                @bind="@(Data.Style.PaddingBottom)"
+                @bind:event="oninput" @bind:after="async () => { await DataChanged.InvokeAsync(Data); }" @bind:culture="System.Globalization.CultureInfo.InvariantCulture" />
+        <label>@(Data.Style.PaddingBottom)</label>
+
+        <label>padding-left:</label>
+        <input type="range" min="0" max="300" step="1"
+                @bind="@(Data.Style.PaddingLeft)"
+                @bind:event="oninput" @bind:after="async () => { await DataChanged.InvokeAsync(Data); }" @bind:culture="System.Globalization.CultureInfo.InvariantCulture" />
+        <label>@(Data.Style.PaddingLeft)</label>
+      </div>
     </div>
     <InputRadioGroup @bind-Value="Data.Style.DisplayType" @bind-Value:after="async () => { await DataChanged.InvokeAsync(Data); }">
     @foreach (DisplayType dt in Enum.GetValues<DisplayType>())
@@ -45,4 +99,16 @@
 
     [Parameter]
     public EventCallback<SquareData> DataChanged { get; set; }
+
+    private async Task OnWidthCheckboxChanged(ChangeEventArgs e)
+    {
+        Data.Style.UseFixedWidth = (bool)e.Value;
+        await DataChanged.InvokeAsync(Data);
+    }
+
+    private async Task OnHeightCheckboxChanged(ChangeEventArgs e)
+    {
+        Data.Style.UseFixedHeight = (bool)e.Value;
+        await DataChanged.InvokeAsync(Data);
+    }
 }

@@ -4,8 +4,11 @@ public class SquareCssStyleValues
 {
     public DisplayType DisplayType { get; set; }
     public required string BorderColor { get; set; }
-    public int? Width { get; set; } = 42;
-    public int? Height { get; set; } = 42;
+
+    public bool UseFixedWidth { get; set; } = true;
+    public bool UseFixedHeight { get; set; } = true;
+    public int Width { get; set; } = 42;
+    public int Height { get; set; } = 42;
     public int MarginTop { get; set; }
     public int MarginBottom { get; set; }
     public int MarginLeft { get; set; }
