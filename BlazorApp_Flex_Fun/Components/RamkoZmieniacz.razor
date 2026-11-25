@@ -1,5 +1,7 @@
 ﻿@using System.Globalization
 @rendermode InteractiveServer
+@using FH = FlexHelpers;
+
 @if (Opcje is not null)
 {
     <p> @Opcje.Owocek</p>
@@ -15,24 +17,34 @@
     // Here I must invoke callback to inform parent about change:
     <div class="controls">
 
-    <label>flex-basis </label>
+        <label>flex-basis </label>
     
-    <input type="range" min="0" max="300" step="1"
-        @bind="@(Opcje.Style.FlexBasis)" 
-        @bind:event="oninput" @bind:after="async () => { await OpcjeChanged.InvokeAsync(Opcje); }" @bind:culture="System.Globalization.CultureInfo.InvariantCulture" />
-        <span>@(Opcje.Style.FlexBasis)</span>
+        <input type="range" min="0" max="300" step="1"
+            @bind="@(Opcje.Style.FlexBasis)" 
+            @bind:event="oninput" @bind:after="async () => { await OpcjeChanged.InvokeAsync(Opcje); }" @bind:culture="System.Globalization.CultureInfo.InvariantCulture" />
+            <span>@(Opcje.Style.FlexBasis)</span>
 
-    <label>flex-shrink</label>
-    <input type="range" min="0" max="1" step="0.01"
-    @bind="@(Opcje.Style.FlexShrink)" 
-    @bind:event="oninput" @bind:after="async () => { await OpcjeChanged.InvokeAsync(Opcje); }" @bind:culture="System.Globalization.CultureInfo.InvariantCulture" />
-            <span>@(Opcje.Style.FlexShrink.ToString(CultureInfo.InvariantCulture))</span>
-    <label>flex-grow</label>
+        <label>flex-shrink</label>
         <input type="range" min="0" max="1" step="0.01"
-        @bind="@(Opcje.Style.FlexGrow)"
+        @bind="@(Opcje.Style.FlexShrink)" 
         @bind:event="oninput" @bind:after="async () => { await OpcjeChanged.InvokeAsync(Opcje); }" @bind:culture="System.Globalization.CultureInfo.InvariantCulture" />
+                <span>@(Opcje.Style.FlexShrink.ToString(CultureInfo.InvariantCulture))</span>
+        <label>flex-grow</label>
+            <input type="range" min="0" max="1" step="0.01"
+            @bind="@(Opcje.Style.FlexGrow)"
+            @bind:event="oninput" @bind:after="async () => { await OpcjeChanged.InvokeAsync(Opcje); }" @bind:culture="System.Globalization.CultureInfo.InvariantCulture" />
         <span>@(Opcje.Style.FlexGrow.ToString(CultureInfo.InvariantCulture))</span>
     </div>
+
+    <InputRadioGroup @bind-Value="Opcje.Style.AlignSelf" @bind-Value:after="async () => await OpcjeChanged.InvokeAsync(Opcje)">
+        @foreach(var align in Enum.GetValues<AlignSelf>())
+        {
+            <label>
+                <InputRadio Value="align"/>
+                @FH.EnumToCss(align.ToString());
+            </label>
+        }
+    </InputRadioGroup>
     
     
 }

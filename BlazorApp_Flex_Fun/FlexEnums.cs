@@ -47,6 +47,7 @@ public enum FlexWrap
     WrapReverse = 2
 }
 
+// Ja element układa się w danym rzędzie?
 public enum AlignSelf
 {
     Auto = 0,

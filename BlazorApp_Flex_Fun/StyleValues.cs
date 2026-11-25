@@ -2,6 +2,7 @@
 
 public class StyleValues
 {
+    public AlignSelf AlignSelf { get; set; }
     public int? Width { get; set; } = null;// Random.Shared.Next(30,100);
     public int? Height { get; set; } = null;// Random.Shared.Next(30, 100);
 

@@ -4,14 +4,17 @@
 @*Fot those inputs I do not need to inform that value has changed, because they are not inside other component*@
 <input type="range" min="100" max="1000" step="1" @bind="@containerWidth" @bind:event="oninput"  />
 <input type="range" min="100" max="1000" step="1" @bind="@containerHeight" @bind:event="oninput"  />
-<p>@containerWidth x @containerHeight </p>
+<input type="range" min="0" max="100" step="1" @bind="@rowGap" @bind:event="oninput" />
+<input type="range" min="0" max="100" step="1" @bind="@gap" @bind:event="oninput" />
+<p>@containerWidth x @containerHeight @rowGap @gap </p>
 <div style="display:flex">
-    <FlexPropertyComponent @bind-Wlasciwosc="flexDirection"/>
-    <FlexPropertyComponent @bind-Wlasciwosc="flexWrap"/>
-    <FlexPropertyComponent @bind-Wlasciwosc="justifyContent" />
-    <FlexPropertyComponent @bind-Wlasciwosc="alignContent" />
-    <FlexPropertyComponent @bind-Wlasciwosc="alignItems" />
+    <FlexPropertyComponent @bind-Wlasciwosc="flexDirection" ShowHint="ShowHint"/>
+    <FlexPropertyComponent @bind-Wlasciwosc="flexWrap" ShowHint="ShowHint"/>
+    <FlexPropertyComponent @bind-Wlasciwosc="justifyContent" ShowHint="ShowHint"/>
+    <FlexPropertyComponent @bind-Wlasciwosc="alignContent" ShowHint="ShowHint"/>
+    <FlexPropertyComponent @bind-Wlasciwosc="alignItems" ShowHint="ShowHint"/>
 </div>
+<p> @Hints.GetHint(hint)</p>
  <button @onclick="ResetowankoWartosci">Resetuj wartości </button>
 
 <div class="rameczka" style="@GenerateStyle()">
@@ -40,9 +43,12 @@
 }
 @code {
     public int containerWidth { get; set; } = 500;
-    public int containerHeight { get; set; } = 500 ;
+    public int containerHeight { get; set; } = 222;
+    public int rowGap { get; set; } = 0;    // gap between rows
+    public int gap { get; set; } = 0;       // gap between elements
     OpcjeRamki? aktualnieWybranaRamka;
     int? RamkaAktualnyOver = null;
+    string hint = "";
 
     List<OpcjeRamki> initialFrames = CreateInitialFrames();
 
@@ -56,7 +62,7 @@
     {
         var st = $"width: {containerWidth}px; height: {containerHeight}px;";
         return st + FlexHelpers
-        .GetStyle(flexDirection, justifyContent, alignContent, alignItems,flexWrap);
+        .GetStyle(flexDirection, justifyContent, alignContent, alignItems, flexWrap, gap, rowGap);
     }
 
     void ResetowankoWartosci()
@@ -79,7 +85,7 @@
 
     private void RamknaOnPointerLeave()
     {
-     //   RamkaAktualnyOver = null;
+        //   RamkaAktualnyOver = null;
     }
 
     private static List<OpcjeRamki> CreateInitialFrames()
@@ -96,5 +102,10 @@
             new OpcjeRamki(){Owocek = "🥝", Style = InitValues(), Id=5 }
         };
         return ramki;
+    }
+
+    private void ShowHint(string hint)
+    {
+        this.hint = FlexHelpers.EnumToCss(hint);
     }
 }

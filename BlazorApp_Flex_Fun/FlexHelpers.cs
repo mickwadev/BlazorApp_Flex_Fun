@@ -11,26 +11,30 @@ public static class FlexHelpers
         JustifyContent justifyContent,
         AlignContent alignContent,
         AlignItems alignItems,
-        FlexWrap flexWrap)
+        FlexWrap flexWrap,
+        int gap, int rowGap)
     {
         StringBuilder sb = new StringBuilder();
         sb.Append("Display: Flex;");
-        sb.Append($"flex-direction: {EnumToCss(direction.ToString())};");
-        sb.Append($"flex-wrap: {EnumToCss(flexWrap.ToString())};");
-        sb.Append($"justify-content: {EnumToCss(justifyContent.ToString())};");
-        sb.Append($"align-content: {EnumToCss(alignContent.ToString())};");
-        sb.Append($"align-items: {EnumToCss(alignItems.ToString())};");
+        sb.Append($"gap: {gap}px;");
+        sb.Append($"row-gap: {rowGap}px;");
+        sb.Append($"flex-direction: {EnumToCss(direction)};");
+        sb.Append($"flex-wrap: {EnumToCss(flexWrap)};");
+        sb.Append($"justify-content: {EnumToCss(justifyContent)};");
+        sb.Append($"align-content: {EnumToCss(alignContent)};");
+        sb.Append($"align-items: {EnumToCss(alignItems)};");
         return sb.ToString();
     }
   
-    public static string EnumToCss(string enumName)
+    public static string EnumToCss<T>(T enumName)
     {
+        var enu = enumName.ToString();
         StringBuilder sb = new StringBuilder();
-        sb.Append(char.ToLower(enumName[0]));
+        sb.Append(char.ToLower(enu[0]));
 
-        for (int i = 1; i < enumName.Length; i++) 
+        for (int i = 1; i < enu.Length; i++) 
         {
-            char c = enumName[i];
+            char c = enu[i];
             sb.Append($"{(char.IsUpper(c)?"-":"")}{char.ToLower(c)}");
         }
         return sb.ToString();
@@ -51,6 +55,7 @@ public static class FlexHelpers
             sb.AppendHtmlNewLine($"height: {sv.Height}");
         }
 
+        sb.Append($"align-self:{sv.AlignSelf}");
         return (MarkupString) sb.ToString();
     }
 
@@ -68,7 +73,7 @@ public static class FlexHelpers
         {
             sb.Append($"height: {sv.Height}px; ");
         }
-
+        sb.Append($"align-self:{EnumToCss(sv.AlignSelf)}");
         return sb.ToString();
     }
 }
