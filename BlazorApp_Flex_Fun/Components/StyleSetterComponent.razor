@@ -2,15 +2,6 @@
 @using FH = FlexHelpers;
 @if(Data is not null)
 {
-    <InputRadioGroup @bind-Value="Data.Style.FloatType" @bind-Value:after="async () => await DataChanged.InvokeAsync(Data)">
-        @foreach (var floatType in Enum.GetValues<FloatType>())
-        {
-            <label>
-                <InputRadio Value="floatType"/>
-                @FlexHelpers.EnumToCss(floatType);
-            </label>            
-        }
-    </InputRadioGroup>
     <div style="display:flex;flex-direction:column;width:433px;">
     <label>
         Fixed width?
